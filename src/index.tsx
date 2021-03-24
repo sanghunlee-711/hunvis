@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import RootRouter from "./routes";
+import { Provider } from "react-redux";
+import store from "./common/combinedStore";
 
 const RenderComponent: React.FC = (): JSX.Element => {
   return (
@@ -10,4 +12,9 @@ const RenderComponent: React.FC = (): JSX.Element => {
   );
 };
 
-ReactDOM.render(<RenderComponent />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <RenderComponent />
+  </Provider>,
+  document.getElementById("root")
+);
