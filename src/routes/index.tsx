@@ -6,10 +6,12 @@ import About from "../pages/About/About";
 import Post from "../pages/Post/Post";
 import Login from "../pages/Login/Login";
 import Footer from "../pages/Footer/Footer";
-
+import { Provider } from "react-redux";
+import store from "../common/combinedStore";
 const RootRouter: React.FC = (): JSX.Element => {
   return (
     <BrowserRouter>
+      {/* <Provider store={store}> */}
       <Nav />
       <Switch>
         <Route path="/" exact component={Home} />
@@ -18,6 +20,7 @@ const RootRouter: React.FC = (): JSX.Element => {
         <Route path="/login" exact component={Login} />
       </Switch>
       <Footer />
+      {/* </Provider> */}
     </BrowserRouter>
   );
 };

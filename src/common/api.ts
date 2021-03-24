@@ -16,3 +16,12 @@ export function callApiLike<T>(): Promise<void> {
     }, 1000);
   });
 }
+
+export const callApi = () => {
+  fetch("/data/data.json", {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  }).then((res) => console.log(res));
+};
