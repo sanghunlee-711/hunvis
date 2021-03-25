@@ -31,3 +31,31 @@ export const callApi = async () => {
     console.log(err);
   }
 };
+
+export const sendApi = (data?: { id: string; pw: string }) => {
+  return new Promise((resolve, reject) => {
+    console.log(data);
+    setTimeout(resolve, 1000);
+  });
+};
+
+//Under is for Sending Real Server
+export const sendApi2 = async (data?: { id: string; pw: string }) => {
+  try {
+    const post = await fetch("testURL", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        "Content-type": "application/json",
+      },
+      redirect: "follow",
+      body: JSON.stringify(data),
+    });
+
+    const sendingdata = await post.json();
+    console.log(sendingdata);
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -9,14 +9,18 @@ const Login = () => {
   const [pwVal, setPwVal] = useState("");
   const dispatch = useDispatch();
   const modalBool = useSelector((state: RootState) => state.nav.modal);
+  const inputId = useSelector((state: RootState) => state.nav.loginData.id);
+  const inputPw = useSelector((state: RootState) => state.nav.loginData.pw);
+
   const onChangeHanlder = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target as HTMLInputElement;
+
     switch (name) {
       case "id":
-        setIdVal(value);
+        dispatch(navActions.getId(value));
         break;
       case "pw":
-        setPwVal(value);
+        dispatch(navActions.getPw(value));
         break;
       default:
         console.log("Invalid!");
@@ -36,15 +40,21 @@ const Login = () => {
         <input
           name="id"
           onChange={(e) => onChangeHanlder(e)}
-          value={idVal}
+          value={inputId}
         ></input>
         <input
           name="pw"
           onChange={(e) => onChangeHanlder(e)}
-          value={pwVal}
+          value={inputPw}
         ></input>
         <ButtonWrapper>
-          <button>login</button>
+          <button
+            onClick={() => {
+              dispatch(navActions.postLogin());
+            }}
+          >
+            login
+          </button>
           <button>register</button>
         </ButtonWrapper>
       </LoginContainer>

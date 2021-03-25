@@ -4,6 +4,7 @@ export interface IRootState {
 }
 export interface NavRootState {
   modal: boolean;
+  loginData: { id: string; pw: string };
 }
 
 export interface RootState {
@@ -41,11 +42,16 @@ export interface SagaType {
 //nav
 export interface NavActionType {
   LOGIN_MODAL: string;
+  POST_LOGIN: string;
+  GET_ID: string;
+  GET_PW: string;
 }
 
 export interface NavActionsType {
   type: string;
   modal: boolean;
+  id: string;
+  pw: string;
 }
 
 export interface NavRootInterface {}
