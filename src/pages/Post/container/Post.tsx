@@ -1,33 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { actions } from "./state/index";
-
-interface IRootState {
-  post: string[];
-  count: number;
-}
-interface RootState {
-  post: IRootState;
-}
+import { actions } from "../state/index";
+import { RootState } from "../../../common/interface";
+import PostList from "../component/PostList";
 
 const Post: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const count = useSelector((state: RootState) => state.post.count);
-
+  const postData = useSelector((state: RootState) => state.post.post);
   const onClickHandler = () => {
     console.log(count);
     dispatch(actions.countApiPost(count));
   };
-  const checkSaga = () => {
+  useEffect(() => {
     dispatch(actions.sagaApi());
-  };
+  }, []);
+
   return (
     <div>
       <span>HEllo Post</span>
       <button onClick={() => onClickHandler()}>Call Post</button>
       <p>{`Count Time: ${count}`}</p>
-      <button onClick={checkSaga}>Test Saga</button>
+      <button>Test Saga</button>
+      <PostList data={postData} />
     </div>
   );
 };

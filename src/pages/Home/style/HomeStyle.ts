@@ -10,6 +10,8 @@ const FallingContainer = styled.section`
   justify-content: center;
   align-items: center;
   h2 {
+    height: 80vh;
+    text-align: center;
     color: #fff;
     font-size: 8em;
     text-transform: uppercase;

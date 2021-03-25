@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { FOOTER_DATA } from "../../common/constant";
 
 const Footer: React.FC = (): JSX.Element => {
-  const [footerLinkList, setFooterList] = useState([
-    "github",
-    "velog",
-    "instagram",
-    "phone",
-    "email",
-  ]);
-  const test = {
-    github: "https://github.com/sanghunlee-711",
-    instagram: "https://www.instagram.com/hun__hoon/",
-    phone: "01092082770",
-    email: "cloudlee711@gmail.com",
-  };
+  // const footerData = {
+  //   github: "https://github.com/sanghunlee-711",
+  //   instagram: "https://www.instagram.com/hun__hoon/",
+  //   phone: "01092082770",
+  //   email: "cloudlee711@gmail.com",
+  // };
 
   return (
     <FooterContainer>
       <FooterWrapper>
-        {footerLinkList.map((footer) => (
+        {Object.keys(FOOTER_DATA).map((footer) => (
           <li>
-            <a href="https://github.com/sanghunlee-711">{footer}</a>
+            <a href={`${Object.values(FOOTER_DATA)}`}>
+              <i className={footer}></i>
+            </a>
           </li>
         ))}
       </FooterWrapper>
@@ -32,22 +28,35 @@ const Footer: React.FC = (): JSX.Element => {
 
 const FooterContainer = styled.footer`
   border-top: 1px solid black;
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  height: 20vh;
-  min-height: 100px;
+  right: 0; */
+  height: 10vh;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
 `;
 
 const FooterWrapper = styled.ul`
   width: 80%;
   margin: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
   li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     list-style: none;
+    width: 30%;
+    list-style: none;
+
+    a {
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: black;
+      text-transform: capitalize;
+    }
   }
 `;
 
