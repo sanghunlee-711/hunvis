@@ -4,7 +4,6 @@ import { ActionType, ActionsType, DataTypes } from "../../../common/interface";
 export const types: ActionType = {
   CALL_API: "post/CALL_API",
   COUNT_API: "post/COUNT_API",
-  TEST_CONSOLE: "post/TEST_CONSOLE",
 
   //Under Action Type is for SAGA(사가)
   SAGA_API: "post/SAGA_API",
@@ -15,7 +14,6 @@ export const types: ActionType = {
 export const actions = {
   callApiPost: () => ({ type: types.CALL_API }),
   countApiPost: (count: number) => ({ type: types.COUNT_API, count }),
-  testConsole: () => ({ type: types.TEST_CONSOLE }),
   sagaApi: () => ({ type: types.SAGA_API }),
   sucessApi: (data: DataTypes) => ({ type: types.SUCESS_API, data }),
 };
@@ -35,10 +33,7 @@ export const postReducer = (state = INITIAL_STATE, action: ActionsType) => {
         ...state,
         count: state.count + 1,
       };
-    case "post/TEST_CONSOLE":
-      return {
-        ...state,
-      };
+
     case "post/SUCESS_API":
       return {
         ...state,
