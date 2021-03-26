@@ -29,24 +29,33 @@ const Login = () => {
 
   return (
     <LoginModalContainer>
-      <button
-        onClick={() => {
-          dispatch(navActions.loginModal(modalBool));
-        }}
-      >
-        QUIT
-      </button>
       <LoginContainer>
-        <input
-          name="id"
-          onChange={(e) => onChangeHanlder(e)}
-          value={inputId}
-        ></input>
-        <input
-          name="pw"
-          onChange={(e) => onChangeHanlder(e)}
-          value={inputPw}
-        ></input>
+        <QuitButton
+          onClick={() => {
+            dispatch(navActions.loginModal(modalBool));
+          }}
+        >
+          <i className="far fa-times-circle fa-3x"></i>
+        </QuitButton>
+        <InputWrapper>
+          <div>
+            <label htmlFor="id">ID</label>
+            <input
+              id="id"
+              name="id"
+              onChange={(e) => onChangeHanlder(e)}
+              value={inputId}
+            ></input>
+          </div>
+          <div>
+            <label htmlFor="pw">PW</label>
+            <input
+              name="pw"
+              onChange={(e) => onChangeHanlder(e)}
+              value={inputPw}
+            ></input>
+          </div>
+        </InputWrapper>
         <ButtonWrapper>
           <button
             onClick={() => {
@@ -71,18 +80,46 @@ const LoginModalContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
   z-index: 100;
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  div {
+    display: flex;
+    align-items: center;
+    label {
+      margin-right: 5px;
+    }
+  }
+  input {
+    width: 100%;
+  }
+`;
+
 const LoginContainer = styled.div`
+  position: relative !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  border: 1px solid black;
+  width: 50%;
+  height: 50%;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
+`;
+
+const QuitButton = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background-color: white;
 `;
 export default Login;

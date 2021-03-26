@@ -4,7 +4,7 @@ const FallingContainer = styled.section`
   margin: auto;
   width: 80vw;
   height: 100%;
-  background: radial-gradient(#333, #000);
+  /* background: radial-gradient(#333, #000); */
   overflow: hidden;
   display: flex;
   justify-content: center;
