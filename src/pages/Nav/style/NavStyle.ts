@@ -8,6 +8,10 @@ export const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   border-bottom: 1px solid black;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
 `;
 
 export const NavWrapper = styled.ul`

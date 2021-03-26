@@ -11,7 +11,6 @@ export function* fetchData(): Generator {
     yield put(actions.countApiPost(1));
     try {
       const datatest = yield call(callApi);
-      console.log(datatest);
       yield put(actions.sucessApi(datatest as DataTypes));
     } catch (error) {
       yield put(actions.countApiPost(-1));
