@@ -37,39 +37,43 @@ const Login = () => {
         >
           <i className="far fa-times-circle fa-3x"></i>
         </QuitButton>
+        <Title>LOGIN/REGISTER</Title>
         <InputWrapper>
-          <div>
-            <label htmlFor="id">ID</label>
-            <input
-              id="id"
-              name="id"
-              onChange={(e) => onChangeHanlder(e)}
-              value={inputId}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="pw">PW</label>
-            <input
-              name="pw"
-              onChange={(e) => onChangeHanlder(e)}
-              value={inputPw}
-            ></input>
-          </div>
+          <input
+            id="id"
+            name="id"
+            onChange={(e) => onChangeHanlder(e)}
+            value={inputId}
+            placeholder="Type Your ID"
+          ></input>
+
+          <input
+            name="pw"
+            onChange={(e) => onChangeHanlder(e)}
+            value={inputPw}
+            type="password"
+            placeholder="Type Your PW"
+          ></input>
         </InputWrapper>
         <ButtonWrapper>
-          <button
+          <Button
             onClick={() => {
               dispatch(navActions.postLogin());
             }}
           >
             login
-          </button>
-          <button>register</button>
+          </Button>
+          <Button>register</Button>
         </ButtonWrapper>
       </LoginContainer>
     </LoginModalContainer>
   );
 };
+
+const Title = styled.div`
+  font-size: 1.4rem;
+  font-weight: bold;
+`;
 
 const LoginModalContainer = styled.section`
   position: absolute;
@@ -87,15 +91,13 @@ const LoginModalContainer = styled.section`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  div {
-    display: flex;
-    align-items: center;
-    label {
-      margin-right: 5px;
-    }
-  }
+  justify-content: center;
+  align-items: center;
+  width: 70%;
   input {
     width: 100%;
+    min-height: 40px;
+    margin: 1vh 0;
   }
 `;
 
@@ -113,6 +115,26 @@ const LoginContainer = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 70%;
+`;
+
+const Button = styled.button`
+  background-color: white;
+  border: 1px solid black;
+  background-color: white;
+  font-size: 1.2rem;
+  margin: 0.4vh 0;
+  transition: all 0.5s ease-in-out;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  padding: 1vh;
+  &:hover {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+  }
 `;
 
 const QuitButton = styled.button`
@@ -121,5 +143,10 @@ const QuitButton = styled.button`
   top: 10px;
   border: none;
   background-color: white;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 export default Login;
