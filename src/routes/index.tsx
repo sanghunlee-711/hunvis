@@ -15,7 +15,6 @@ const RootRouter: React.FC = (): JSX.Element => {
       <Nav />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/about" exact component={About} />
         <Route path="/post" exact component={Post} />
       </Switch>
       <Footer />

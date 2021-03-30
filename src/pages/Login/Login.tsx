@@ -5,8 +5,6 @@ import { RootState } from "../../common/interface";
 import { navActions } from "../Nav/state";
 
 const Login = () => {
-  const [idVal, setIdVal] = useState("");
-  const [pwVal, setPwVal] = useState("");
   const dispatch = useDispatch();
   const modalBool = useSelector((state: RootState) => state.nav.modal);
   const inputId = useSelector((state: RootState) => state.nav.loginData.id);
