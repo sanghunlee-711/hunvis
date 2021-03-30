@@ -12,19 +12,32 @@ const Nav: React.FC = (): JSX.Element => {
   const history = useHistory();
   const dispatch = useDispatch();
   const modalBool = useSelector((state: RootState) => state.nav.modal);
+  const aboutScroll = useSelector((state: RootState) => state.nav.aboutScroll);
   let refElement = useRef<HTMLElement>(null);
 
-  const onClickHandler = () => {
-    console.log("Hello");
+  const handlePush = (el: string) => {
+    if (el === "home") {
+      history.push("/");
+    } else if (el === "about") {
+      scrollAbout();
+    } else {
+      history.push(`/${el}`);
+    }
+  };
+
+  const scrollAbout = () => {
+    window.scrollTo({
+      top: aboutScroll,
+      behavior: "smooth",
+    });
+    console.log("HEllo ABOUT");
   };
 
   return (
-    <NavContainer onClick={() => onClickHandler()}>
+    <NavContainer ref={refElement}>
       <NavWrapper>
         {NAV_DATA.map((el) => (
-          <li onClick={() => history.push(el === "home" ? "/" : `/${el}`)}>
-            {el}
-          </li>
+          <li onClick={() => handlePush(el)}>{el}</li>
         ))}
         <li>
           <button
@@ -44,13 +57,15 @@ const Nav: React.FC = (): JSX.Element => {
 const NavContainer = styled.nav`
   color: black;
   width: 100vw;
-  min-height: 50px;
+  height: 0vh;
   height: 10vh;
   display: flex;
   align-items: center;
   border-bottom: 1px solid black;
   background-color: white;
   z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  visibility: visible;
 `;
 
 export default Nav;
