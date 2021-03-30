@@ -2,6 +2,7 @@ export interface IRootState {
   post: DataTypes;
   count: number;
 }
+
 export interface NavRootState {
   modal: boolean;
   loginData: { id: string; pw: string };
@@ -20,8 +21,20 @@ export interface DataType {
 }
 export type DataTypes = DataType[];
 
-//action type
+export interface WorkRootState {
+  position: string;
+  period: string[];
+  title: string;
+  work: string[];
+  corp: { name: string; description: string };
+}
 
+export interface APIRootDataType {
+  "work-data": WorkRootState[];
+  "post-data": DataType[];
+}
+
+//action type
 export interface ActionType {
   CALL_API: string;
   COUNT_API: string;
@@ -40,7 +53,7 @@ export interface SagaType {
   data: DataTypes;
 }
 
-//nav
+//nav store type
 export interface NavActionType {
   LOGIN_MODAL: string;
   POST_LOGIN: string;

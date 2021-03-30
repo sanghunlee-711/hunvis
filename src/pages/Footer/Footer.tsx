@@ -14,9 +14,19 @@ const Footer: React.FC = (): JSX.Element => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        {Object.keys(FOOTER_DATA).map((footer) => (
+        {Object.keys(FOOTER_DATA).map((footer, index) => (
           <li>
-            <a href={`${Object.values(FOOTER_DATA)}`}>
+            <a
+              href={
+                (Object.values(FOOTER_DATA)[index] as string) ===
+                "cloudlee711@gmail.com"
+                  ? "mailto:cloudlee711@gmail.com"
+                  : Object.values(FOOTER_DATA)[index]
+              }
+              target="_blank"
+              rel="noreferrer"
+              type="mail"
+            >
               <i className={footer}></i>
             </a>
           </li>

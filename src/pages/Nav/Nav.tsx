@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { NAV_DATA } from "../../common/constant";
 import { NavWrapper } from "./style/NavStyle";
-import Login from "../Login/Login";
+import { LoginMemo } from "../Login/Login";
 import { RootState } from "../../common/interface";
 import { navActions } from "./state/index";
 import styled from "styled-components";
@@ -18,7 +18,10 @@ const Nav: React.FC = (): JSX.Element => {
   const handlePush = (el: string) => {
     if (el === "home") {
       history.push("/");
-    } else if (el === "about") {
+    } else if (el === "about" && history.location.pathname === "/") {
+      scrollAbout();
+    } else if (history.location.pathname === "/post") {
+      history.push("/");
       scrollAbout();
     } else {
       history.push(`/${el}`);
@@ -26,11 +29,11 @@ const Nav: React.FC = (): JSX.Element => {
   };
 
   const scrollAbout = () => {
+    console.log(aboutScroll);
     window.scrollTo({
       top: aboutScroll,
       behavior: "smooth",
     });
-    console.log("HEllo ABOUT");
   };
 
   return (
@@ -49,7 +52,7 @@ const Nav: React.FC = (): JSX.Element => {
           </button>
         </li>
       </NavWrapper>
-      {modalBool ? <Login /> : ""}
+      {modalBool ? <LoginMemo /> : ""}
     </NavContainer>
   );
 };
@@ -68,4 +71,4 @@ const NavContainer = styled.nav`
   visibility: visible;
 `;
 
-export default Nav;
+export const NavMemo = React.memo(Nav);
