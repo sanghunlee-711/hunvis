@@ -8,8 +8,9 @@ const Post: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const count = useSelector((state: RootState) => state.post.count);
   const postData = useSelector((state: RootState) => state.post.post);
+  const workData = useSelector((state: RootState) => state.post);
   const onClickHandler = () => {
-    console.log(count);
+    console.log(workData);
     dispatch(actions.countApiPost(count));
   };
   useEffect(() => {
@@ -26,5 +27,6 @@ const Post: React.FC = (): JSX.Element => {
     </div>
   );
 };
+export const PostMemo = React.memo(Post);
 
-export default Post;
+// export default Post;

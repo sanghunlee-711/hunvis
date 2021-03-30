@@ -147,4 +147,5 @@ const QuitButton = styled.button`
     transform: scale(1.1);
   }
 `;
-export default Login;
+
+export const LoginMemo = React.memo(Login);

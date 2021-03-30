@@ -65,5 +65,65 @@
       "title": "This is Sample Title",
       "contents": "This is ContentsThis is ContentsThis is ContentsThis is ContentsThis is ContentsThis is Contents"
     }
+  ],
+  "work-data": [
+    {
+      "position": "FrontEnd Developer",
+      "period": ["2020.12", "2021.03"],
+      "title": "사내 Legacy Code 관리를 중심으로 고도화 사전 작업에 참여하였습니다.",
+      "work": [
+        "PHP, jQuery로 구성된 legacy code의 documentation 작업 및 유지보수, 스터디 진행",
+        "추후 지능형 튜터로의 개발을 위한 고도화작업을 위한 다양한 프레임워크와 라이브러리들의 시험 진행",
+        "웹뷰 기반의 IOS 버전의 앱개발 참여(다비키즈)[2021.01~2021.02]"
+      ],
+      "corp": {
+        "name": "다비수 디지털(아이들랩)",
+        "description": "기존의 지루하게 반복되는 단순 연산학습에서 탈피하여 스스로 다양한 방법을 생각하며 수의 원리를 깨우치고 창의적으로 응용할 수 있는 새로운 개념의 사고력 연산학습 프로그램을 개발하는 회사입니다."
+      }
+    },
+    {
+      "position": "Internship",
+      "period": ["2020.09", "2020.10"],
+      "title": "브랜디에서 사용중인 Vue js 를 기반으로 한 브랜디 스테이징사이트의 클론을 하였습니다.",
+      "work": [
+        "Navigation-bar를 통해 구현되는 사이트의 전체적인 화면 및 기능을 담당했습니다.",
+        "Vue-x를 이용한 데이터 재활용으로 구성된 Nav bar 및 Category component의 Aside bar 구현",
+        "Vue routes의 params를 활용하여 클릭흔적을 남기는 hover기능 구현",
+        "event.clientX, translate 속성을 사용하여 Draggable 슬라이더 구현",
+        "Vue-google-login library를 이용한 로그인 및 회원가입 구현",
+        "백엔드 통신 시 limit와offset 의 변동을 통한 pagination 기능 구현"
+      ],
+      "corp": {
+        "name": "브랜디",
+        "description": "NO.1 MOBILE COMMERCE PLATFORM 모바일에 최적화된 쇼핑 환경을 구현하는 패션 커머스 기업입니다."
+      }
+    },
+    {
+      "position": "Planning",
+      "period": ["2019.11", "2020.05"],
+      "title": "Hynix 프로젝트의 본점인 이천에서 SK 하이닉스의 계약을 담당하는 기획팀에서 근무하였습니다.",
+      "work": [
+        "New KPI Dash board 작성 보조 및 데이터 수집",
+        "데이터 수집 자동화 위한 Dash board Hynix 프로젝트 담당",
+        "Monthly Board meeting 작성보조"
+      ],
+      "corp": {
+        "name": "Veolia, Hynix Project ",
+        "description": "물, 폐기물 ,에너지 서비스와 같은 공공 기관이 전통적으로 관리하는 3 가지 주요 서비스 및 유틸리티 분야에서 활동하는 프랑스 다국적 기업입니다."
+      }
+    },
+    {
+      "position": "WaterTreatment Engineer",
+      "period": ["2018.10", "2019.11"],
+      "title": "Hynix 프로젝트내의 구미지점에 해당하는 매그나칩반도체의 폐수처리 담당 엔지니어로 근무하였습니다.",
+      "work": [
+        "주 52시간 제도에 따른 공정 자동화 시간 확보 설계 팀원",
+        "튜브 내의 소석회 응집에 따른 데이터 분석 등"
+      ],
+      "corp": {
+        "name": "Veolia, Hynix Project ",
+        "description": "물, 폐기물 ,에너지 서비스와 같은 공공 기관이 전통적으로 관리하는 3 가지 주요 서비스 및 유틸리티 분야에서 활동하는 프랑스 다국적 기업입니다."
+      }
+    }
   ]
 }
