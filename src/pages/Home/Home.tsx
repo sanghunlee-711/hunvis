@@ -97,7 +97,7 @@ const CloudWrapper = styled.div`
       animation: animate calc(5s * 3) linear infinite;
     }
     &:nth-child(even) {
-      animation: animate calc(5s * 2) linear infinite;
+      animation: animate calc(3s * 2) linear infinite;
     }
   }
   @keyframes animate {
@@ -107,13 +107,15 @@ const CloudWrapper = styled.div`
     }
     25% {
       opacity: 1;
+      transform: scale(2);
     }
     75% {
       opacity: 1;
+      transform: scale(3);
     }
     100% {
       opacity: 0.5;
-      transform: scale(3);
+      transform: scale(1);
     }
   }
 `;
