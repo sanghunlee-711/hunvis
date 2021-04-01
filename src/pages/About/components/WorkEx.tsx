@@ -72,12 +72,12 @@ const WorkEx: React.FC<WorkExPropTypes> = ({ workData }) => {
         ))}
       </WorkCardContainer>
       <ButtonWrapper>
-        <button onClick={(e) => CarouselClick(e)} name="prev">
-          Prev
-        </button>
-        <button onClick={(e) => CarouselClick(e)} name="next">
-          Next
-        </button>
+        <CarouselButton onClick={(e) => CarouselClick(e)} name="prev">
+          <i className="fas fa-arrow-left fa-3x"></i>
+        </CarouselButton>
+        <CarouselButton onClick={(e) => CarouselClick(e)} name="next">
+          <i className="fas fa-arrow-right fa-3x"></i>
+        </CarouselButton>
       </ButtonWrapper>
     </WorkExperienceContainer>
   );
@@ -85,6 +85,27 @@ const WorkEx: React.FC<WorkExPropTypes> = ({ workData }) => {
 
 const ButtonWrapper = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const CarouselButton = styled.button`
+  width: 120px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid white;
+
+  i {
+    z-index: -10;
+    transition: all 0.5s ease-in-out;
+    color: black;
+  }
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: black;
+    i {
+      color: white;
+    }
+  }
 `;
 
 const WorkExperienceContainer = styled.div`
