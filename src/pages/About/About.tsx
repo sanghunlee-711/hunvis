@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import Comments from "./components/Comments";
 import WorkEx from "./components/WorkEx";
 import axios from "axios";
-import {
-  DataTypes,
-  APIRootDataType,
-  WorkRootState,
-} from "../../common/interface";
+import { APIRootDataType, WorkRootState } from "../../common/interface";
 
 //아래 데이터 타입으로 다 정의를 해보자 ..
 
