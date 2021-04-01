@@ -65,7 +65,8 @@ const BannerContainer = styled.div<{ barcenloa: string }>`
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url(${barcenloa});
+  /* background: url(${barcenloa}); */
+  background-color: black;
   background-size: cover;
   background-position: bottom;
   display: flex;

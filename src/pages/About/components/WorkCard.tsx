@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { WorkRootState } from "../../../common/interface";
 import styled from "styled-components";
 import castle from "../../../common/img/castle.jpg";
@@ -10,9 +10,16 @@ const WorkCard: React.FC<WorkRootState> = ({
   work,
   corp,
 }) => {
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let curr = cardContainerRef.current as HTMLDivElement;
+    curr.style.width = `${document.documentElement.clientWidth}px`;
+    console.log(curr.style.width);
+  }, []);
+
   return (
     <>
-      <CardContainer>
+      <CardContainer ref={cardContainerRef}>
         <ContentsWrapper>
           <h2>{position}</h2>
           <DateWrapper>
@@ -54,11 +61,9 @@ const LinkWrapper = styled.div`
 `;
 
 const CardContainer = styled.div`
-  width: 100%;
-  min-width: 70vw;
   margin: 10vh 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   /* position: relative; */
 
   h2 {

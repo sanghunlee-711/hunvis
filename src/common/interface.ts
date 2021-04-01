@@ -9,9 +9,14 @@ export interface NavRootState {
   aboutScroll: number;
 }
 
+export interface AboutRootState {
+  carouselState: number;
+}
+
 export interface RootState {
   post: IRootState;
   nav: NavRootState;
+  about: AboutRootState;
 }
 
 export interface DataType {
