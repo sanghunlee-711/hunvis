@@ -1,14 +1,16 @@
 import React, {
   useState,
   useRef,
+  useReducer,
   useEffect,
-  useMemo,
   useCallback,
 } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import WorkCard from "./WorkCard";
 import { WorkRootState } from "../../../common/interface";
+import { RootState } from "../../../common/interface";
+import { aboutActions } from "../state";
 
 interface WorkExPropTypes {
   workData: WorkRootState[];
@@ -16,24 +18,39 @@ interface WorkExPropTypes {
 
 const WorkEx: React.FC<WorkExPropTypes> = ({ workData }) => {
   const CarouselWrapperRef = useRef<HTMLDivElement>(null);
-  const [carouselState, setCarouselState] = useState(2);
+  const [, forceUpdate] = useReducer((v) => v + 1, 0);
+
+  const dispatch = useDispatch();
+  const carouselState = useSelector(
+    (state: RootState) => state.about.carouselState
+  );
+  // const cardLen = workData.length || 4;
+  const cardLen = 4;
+  useEffect(() => {
+    const curr = CarouselWrapperRef.current as HTMLDivElement;
+    const cardWidth: number = Number(document.documentElement.clientWidth);
+
+    //cardLen이 0 으로 찍히는 부분 해결 필요
+    curr.style.width = `${document.documentElement.clientWidth * 4}px`;
+    curr.style.transform = `translateX(-${carouselState * cardWidth}px)`;
+    curr.style.transition = "all 0.5s ease-in-out";
+  }, [carouselState]);
 
   const CarouselClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const { name } = e.target as HTMLButtonElement;
-      const curr = CarouselWrapperRef.current as HTMLDivElement;
-      const cardWidth: number = Number(curr.offsetWidth);
-      const cardLen = workData.length;
-      if (name === "next" && carouselState > 1) {
-        setCarouselState(carouselState + 1);
-        curr.style.transform = `translateX(-${carouselState * cardWidth}px)`;
-        curr.style.transition = "all 0.5s ease-in-out";
+      if (name === "next" && carouselState >= 0) {
+        if (carouselState === cardLen - 1) {
+          dispatch(aboutActions.getCarouselState(0));
+        } else {
+          dispatch(aboutActions.getCarouselState(carouselState + 1));
+        }
       } else if (name === "prev" && carouselState <= cardLen + 1) {
-        setCarouselState(carouselState - 1);
-        curr.style.transform = `translateX(${
-          (cardLen - carouselState - 1) * cardWidth
-        }px)`;
-        curr.style.transition = "all 0.5s ease-in-out";
+        if (carouselState === 0) {
+          dispatch(aboutActions.getCarouselState(cardLen - 1));
+        } else {
+          dispatch(aboutActions.getCarouselState(carouselState - 1));
+        }
       }
     },
     [carouselState]
@@ -41,7 +58,8 @@ const WorkEx: React.FC<WorkExPropTypes> = ({ workData }) => {
 
   return (
     <WorkExperienceContainer>
-      <h1>Work Experience</h1>
+      <h1>Work Experience{carouselState + 1}</h1>
+
       <WorkCardContainer ref={CarouselWrapperRef}>
         {workData.map(({ position, period, title, work, corp }) => (
           <WorkCard
@@ -86,7 +104,6 @@ const WorkExperienceContainer = styled.div`
 
 const WorkCardContainer = styled.div`
   display: flex;
-  overflow: visible;
   flex-wrap: no-wrap;
   width: 80%;
   margin: 0 auto;
