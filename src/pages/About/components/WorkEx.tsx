@@ -112,6 +112,7 @@ const WorkExperienceContainer = styled.div`
   /* width: 80%; */
   padding: 75px 100px;
   margin: 0 auto;
+  overflow: hidden;
 
   h1 {
     font-size: 3rem;

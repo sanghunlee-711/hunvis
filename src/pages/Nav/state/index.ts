@@ -4,6 +4,7 @@ import { actions } from "../../Post/state";
 export const navTypes: NavActionType = {
   LOGIN_MODAL: "nav/LOGIN_MODAL",
   ABOUT_SCROLL: "nav/ABOUT_SCROLL",
+  SET_URL: "nav/SET_URL",
   //Under is For SAGA
   POST_LOGIN: "nav/POST_LOGIN",
   GET_ID: "nav/GET_ID",
@@ -13,6 +14,7 @@ export const navTypes: NavActionType = {
 export const navActions = {
   loginModal: (modal: boolean) => ({ type: navTypes.LOGIN_MODAL, modal }),
   postLogin: () => ({ type: navTypes.POST_LOGIN }),
+  setURL: (url: string) => ({ type: navTypes.SET_URL, url }),
   getId: (id: string) => ({ type: navTypes.GET_ID, id }),
   getPw: (pw: string) => ({ type: navTypes.GET_PW, pw }),
   getAboutScroll: (aboutScroll: number) => ({
@@ -25,6 +27,7 @@ export const INTITIAL_STATE_NAV = {
   modal: false,
   loginData: { id: "", pw: "" },
   aboutScroll: 0,
+  url: "",
 };
 
 export const navReducer = (
@@ -51,6 +54,11 @@ export const navReducer = (
       return {
         ...state,
         aboutScroll: action.aboutScroll,
+      };
+    case "nav/SET_URL":
+      return {
+        ...state,
+        url: action.url,
       };
 
     default:

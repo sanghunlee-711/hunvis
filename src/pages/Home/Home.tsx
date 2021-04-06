@@ -17,13 +17,16 @@ import { navActions } from "../Nav/state/index";
 const Home: React.FC = (): JSX.Element => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const cloudRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+
   const movingTitle = () => {
     let title = titleRef;
-    let value = window.scrollY;
     const curr = title.current as HTMLHeadingElement;
+    let scrollValue = window.scrollY;
+
     if (curr) {
-      curr.style.marginBottom = `${value * 2}px`;
+      curr.style.marginBottom = `${scrollValue * 2}px`;
     }
   };
 
@@ -65,7 +68,6 @@ const BannerContainer = styled.div<{ barcenloa: string }>`
   position: relative;
   width: 100%;
   height: 100vh;
-  /* background: url(${barcenloa}); */
   background-color: black;
   background-size: cover;
   background-position: bottom;

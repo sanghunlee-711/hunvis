@@ -32,17 +32,23 @@ export const callApi = async () => {
   }
 };
 
-export const sendApi = (data?: { id: string; pw: string }) => {
+export const sendApi = (data?: { id: string; pw: string }, url?: string) => {
   return new Promise((resolve, reject) => {
     console.log(data);
+    console.log(url);
     setTimeout(resolve, 1000);
   });
 };
 
 //Under is for Sending Real Server
-export const sendApi2 = async (data?: { id: string; pw: string }) => {
+export const sendApi2 = async (
+  data?: { id: string; pw: string },
+  url?: string
+) => {
+  let sendURL = url ? url : "/data/data.json";
+
   try {
-    const post = await fetch("testURL", {
+    const post = await fetch(sendURL, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
