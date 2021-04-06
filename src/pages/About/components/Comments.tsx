@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import selfie from "../../../common/img/selfie.jpeg";
 import barcenloa from "../../common/img/barcelona.jpeg";
+import { aboutActions } from "../state";
 
 const Comments = () => {
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  const linearFunction = () => {
+    let scrollVal = window.scrollY;
+    let windowHeight = document.body.clientHeight;
+    console.log((windowHeight - scrollVal) / windowHeight);
+    const curr = aboutRef.current as HTMLDivElement;
+    const titleCurr = titleRef.current as HTMLHeadingElement;
+    //0 25 50 75 100
+    //linear-gradient(.25turn, red, 10%, blue);
+
+    curr.style.background = `linear-gradient(.10turn, white, ${
+      ((windowHeight - scrollVal) / windowHeight) * 100
+    }% ,black)`;
+    curr.style.transition = "all 0.5s ease-in-out";
+
+    titleCurr.style.background = `linear-gradient(.10turn, white, ${
+      ((windowHeight - scrollVal) / windowHeight) * 100
+    }% ,black)`;
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", linearFunction);
+    return () => window.removeEventListener("scroll", linearFunction);
+  }, []);
+
   return (
     <TextContainer>
-      <h2>안녕하세요 프론트엔드 개발자 이상훈입니다</h2>
+      <h2 ref={titleRef}>안녕하세요 프론트엔드 개발자 이상훈입니다</h2>
       <FirstCommentContainer>
-        <FirstComment>
+        <FirstComment ref={aboutRef}>
           <p>반갑습니다.</p>
           <br />
           <span>활용을 통해 유용함을 만들어 내는 경험을 추구합니다.</span>
@@ -50,7 +78,7 @@ const Comments = () => {
 const TextContainer = styled.section`
   position: relative;
   padding: 75px 100px;
-  background-color: white;
+  background-color: black;
 
   h2 {
     position: relative;
@@ -73,7 +101,7 @@ const FirstCommentContainer = styled.div`
 
 const FirstComment = styled.div`
   font-size: 1.2rem;
-  background-color: #ddecea;
+  /* background-color: #ddecea; */
   width: 70%;
   min-height: 30vh;
   max-height: 30vh;

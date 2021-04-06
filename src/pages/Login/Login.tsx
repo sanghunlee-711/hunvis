@@ -3,12 +3,26 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../common/interface";
 import { navActions } from "../Nav/state";
+import Register from "./components/Register";
 
-const Login = () => {
+const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const modalBool = useSelector((state: RootState) => state.nav.modal);
   const inputId = useSelector((state: RootState) => state.nav.loginData.id);
   const inputPw = useSelector((state: RootState) => state.nav.loginData.pw);
+  const [toRegister, setToRegister] = useState(false);
+
+  const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { name } = e.target as HTMLButtonElement;
+    console.log(name);
+    setToRegister(!toRegister);
+
+    if (name === "register") {
+      console.log("!!");
+
+      setToRegister(!toRegister);
+    }
+  };
 
   const onChangeHanlder = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -27,43 +41,49 @@ const Login = () => {
 
   return (
     <LoginModalContainer>
-      <LoginContainer>
-        <QuitButton
-          onClick={() => {
-            dispatch(navActions.loginModal(modalBool));
-          }}
-        >
-          <i className="far fa-times-circle fa-3x"></i>
-        </QuitButton>
-        <Title>LOGIN/REGISTER</Title>
-        <InputWrapper>
-          <input
-            id="id"
-            name="id"
-            onChange={(e) => onChangeHanlder(e)}
-            value={inputId}
-            placeholder="Type Your ID"
-          ></input>
-
-          <input
-            name="pw"
-            onChange={(e) => onChangeHanlder(e)}
-            value={inputPw}
-            type="password"
-            placeholder="Type Your PW"
-          ></input>
-        </InputWrapper>
-        <ButtonWrapper>
-          <Button
+      {toRegister ? (
+        <Register toRegister={toRegister} onClickHanlder={onClickHandler} />
+      ) : (
+        <LoginContainer>
+          <QuitButton
             onClick={() => {
-              dispatch(navActions.postLogin());
+              dispatch(navActions.loginModal(modalBool));
             }}
           >
-            login
-          </Button>
-          <Button>register</Button>
-        </ButtonWrapper>
-      </LoginContainer>
+            <i className="far fa-times-circle fa-3x"></i>
+          </QuitButton>
+          <Title>LOGIN</Title>
+          <InputWrapper>
+            <input
+              id="id"
+              name="id"
+              onChange={(e) => onChangeHanlder(e)}
+              value={inputId}
+              placeholder="Type Your ID"
+            ></input>
+
+            <input
+              name="pw"
+              onChange={(e) => onChangeHanlder(e)}
+              value={inputPw}
+              type="password"
+              placeholder="Type Your PW"
+            ></input>
+          </InputWrapper>
+          <ButtonWrapper>
+            <Button
+              onClick={() => {
+                dispatch(navActions.postLogin());
+              }}
+            >
+              login
+            </Button>
+            <Button name="register" onClick={(e) => onClickHandler(e)}>
+              register
+            </Button>
+          </ButtonWrapper>
+        </LoginContainer>
+      )}
     </LoginModalContainer>
   );
 };
@@ -109,6 +129,7 @@ const LoginContainer = styled.div`
   border: 1px solid black;
   width: 50%;
   height: 50%;
+  transition: all 0.5s ease-in-out;
 `;
 
 const ButtonWrapper = styled.div`

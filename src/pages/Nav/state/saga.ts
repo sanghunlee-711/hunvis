@@ -9,8 +9,12 @@ export function* postData(): Generator {
   while (true) {
     yield take(navTypes.POST_LOGIN);
     const loginData = yield select((state: RootState) => state.nav.loginData);
+    const url = yield select((state: RootState) => state.nav.url);
+
     try {
-      yield call(() => sendApi(loginData as { id: string; pw: string }));
+      yield call(() =>
+        sendApi(loginData as { id: string; pw: string }, url as string)
+      );
       yield put(navActions.loginModal(true));
     } catch (error) {
       console.log(error);

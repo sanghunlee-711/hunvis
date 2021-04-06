@@ -7,6 +7,7 @@ export interface NavRootState {
   modal: boolean;
   loginData: { id: string; pw: string };
   aboutScroll: number;
+  url: string;
 }
 
 export interface AboutRootState {
@@ -65,6 +66,7 @@ export interface NavActionType {
   GET_ID: string;
   GET_PW: string;
   ABOUT_SCROLL: string;
+  SET_URL: "nav/SET_URL";
 }
 
 export interface NavActionsType {
@@ -73,6 +75,7 @@ export interface NavActionsType {
   id: string;
   pw: string;
   aboutScroll: number;
+  url: string;
 }
 
 export interface NavRootInterface {}
